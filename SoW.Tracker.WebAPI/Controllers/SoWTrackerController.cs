@@ -255,6 +255,76 @@ namespace SoW.Tracker.WebAPI.Controllers
                 return Ok(SoWExceptionHandler.LogException(ed));
             }
         }
+        /// <summary>
+        /// API to get all active years
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetYears")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetYears()
+        {
+            ControllerResponse response = new ControllerResponse();
+            try
+            {
+                response.httpStatusCode = StatusCodes.Status200OK;
+                IList<Years> data = await _SoWTracker.GetYears();
+                response.data = data;
+                response.totalRowCount = data.Count;
+                response.messagetype = ResponseMessagetype.success.ToString();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                ExceptionData ed = new ExceptionData
+                {
+                    MethodException = ex,
+                    LogConfigSection = _logConfigSection,
+                    UserName = Environment.UserName,
+                    MethodName = System.Reflection.MethodBase.GetCurrentMethod().Name
+                };
+                return Ok(SoWExceptionHandler.LogException(ed));
+            }
+        }
+        /// <summary>
+        /// API to get all active years
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetOrigialSoWs")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetOrigialSoWs()
+        {
+            ControllerResponse response = new ControllerResponse();
+            try
+            {
+                response.httpStatusCode = StatusCodes.Status200OK;
+                IList<SoWOriginal> data = await _SoWTracker.GetOrigialSoWs();
+                response.data = data;
+                response.totalRowCount = data.Count;
+                response.messagetype = ResponseMessagetype.success.ToString();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                ExceptionData ed = new ExceptionData
+                {
+                    MethodException = ex,
+                    LogConfigSection = _logConfigSection,
+                    UserName = Environment.UserName,
+                    MethodName = System.Reflection.MethodBase.GetCurrentMethod().Name
+                };
+                return Ok(SoWExceptionHandler.LogException(ed));
+            }
+        }
         private static string GenarateSOWId(string SoWId)
         {
             string FinalSoWID = "";

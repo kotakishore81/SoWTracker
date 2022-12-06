@@ -33,6 +33,8 @@ namespace SoW.Tracker.WebAPI.DAL
         public const string SP_MAXSOWCRID = "sow_Get_Max_SoW_CR";
         public const string SP_OFFSHOREDMS = "sow_Get_Off_Shore_DMS";
         public const string SP_ONSHOREDMS = "sow_Get_On_Shore_DMS";
+        public const string SP_YEARS = "sow_Get_Years";
+        public const string SP_ORIGINALSOWS = "sow_Get_Original_SoWs";
 
 
 

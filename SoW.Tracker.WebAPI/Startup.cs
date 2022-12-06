@@ -33,7 +33,7 @@ namespace SoW.Tracker.WebAPI
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.Development.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
             configuration = builder.Build();
             //Load appsettings end.

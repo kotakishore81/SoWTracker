@@ -109,10 +109,38 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             }
             return lsOnShoreDMS;
         }
+        public async Task<IList<Years>> GetYears()
+        {
+            List<Years> lsYears = null;
+            try
+            {
+                await _context.LoadStoredProc(SP_SoWTracker.SP_YEARS)
+                .ExecAsync(async r => lsYears = await r.ToListAsync<Years>());
+            }
+            catch
+            {
+                throw;
+            }
+            return lsYears;
+        }
+        public async Task<IList<SoWOriginal>> GetOrigialSoWs()
+        {
+            List<SoWOriginal> lsSoWriginal = null;
+            try
+            {
+                await _context.LoadStoredProc(SP_SoWTracker.SP_ORIGINALSOWS)
+                .ExecAsync(async r => lsSoWriginal = await r.ToListAsync<SoWOriginal>());
+            }
+            catch
+            {
+                throw;
+            }
+            return lsSoWriginal;
+        }
 
         public async Task<SoWTrackerProfile> GetMaxSOWId()
         {
-            SoWTrackerProfile result = null;
+            SoWTrackerProfile? result = null;
             try
             {
                 await _context.LoadStoredProc(SP_SoWTracker.SP_MAXORIGINALID)

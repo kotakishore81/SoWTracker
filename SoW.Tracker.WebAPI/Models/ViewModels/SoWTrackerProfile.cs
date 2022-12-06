@@ -60,10 +60,20 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public int OnshoreDMId { get; set; }
         public string? OnShoreDMName { get; set; }
     }
+    public class Years
+    {
+        public int Year { get; set; }
+        public string? Status { get; set; }
+    }
     public class SoWCR
     {
         public int SoWCRNo { get; set; }
         public string? SoWCRName { get; set; }
+    }
+    public class SoWOriginal
+    {
+        public Int64 OriginalSoWID { get; set; }
+        public string? OriginalSoWPattern { get; set; }
     }
 
 }

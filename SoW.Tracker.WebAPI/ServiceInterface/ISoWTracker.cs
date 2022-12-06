@@ -14,5 +14,7 @@ namespace SoW.Tracker.WebAPI.ServiceInterface
         Task<SoWTrackerProfile> GetMaxSOWCRId(string OrignalSOW);
         Task<IList<OffShoreDM>> GetOffShoreDMS();
         Task<IList<OnShoreDM>> GetOnShoreDMS();
+        Task<IList<Years>> GetYears();
+        Task<IList<SoWOriginal>> GetOrigialSoWs();
     }
 }

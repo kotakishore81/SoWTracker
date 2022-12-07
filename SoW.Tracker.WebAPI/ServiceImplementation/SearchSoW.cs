@@ -81,7 +81,7 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
         }
         public async Task<IList<SoWTrackerProfile>> GetAdvanceSearchrSowRecords(AdvanceSearch advanceSearch)
         {
-            List<SoWTrackerProfile> lstSoWTracker = null;
+                List<SoWTrackerProfile> lstSoWTracker = null;
             try
             {
                 await _context.LoadStoredProc(SP_SearchSoW.SP_GETFILTERSOWRECORDS)
@@ -166,9 +166,9 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                 {         
                     strFinalFilterClause = strFinalFilterClause + " AND SOW_IBM_OFF_DM =" + "'" + advanceSearch.IBMOffShoreDM + "'";
                 }
-                if (!string.IsNullOrEmpty(advanceSearch.Status))
+                if (!string.IsNullOrEmpty(advanceSearch.OriginalSoW))
                 {                  
-                    strFinalFilterClause = strFinalFilterClause + " AND  SOW_STAGE =" + "'" + advanceSearch.Status + "'";
+                    strFinalFilterClause = strFinalFilterClause + " AND  ORIGINAL_SOW_ID =" + "'" + advanceSearch.OriginalSoW + "'";
                 }
                 strFinalFilterClause = strFinalFilterClause + this.GenerateSearhFilter(advanceSearch.Filter, advanceSearch.Value);
 

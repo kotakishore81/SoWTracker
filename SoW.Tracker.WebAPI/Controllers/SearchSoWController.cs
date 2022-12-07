@@ -154,14 +154,16 @@ namespace SoW.Tracker.WebAPI.Controllers
             }
         }
         [HttpPost]
-        [Route("GetAdvanceSearch")]
+        [Route("GetDashboardSearch")]
         public async Task<IActionResult> GetAdvanceSearch([FromBody] AdvanceSearch advanceSearch)
         {
             ControllerResponse getFileterSowRecordsResponse = new ControllerResponse();
             try
             {
-                getFileterSowRecordsResponse.data = await _searchSoW.GetAdvanceSearchrSowRecords(advanceSearch);
+                IList<SoWTrackerProfile> profiledata = await _searchSoW.GetAdvanceSearchrSowRecords(advanceSearch);
+                getFileterSowRecordsResponse.data = profiledata;
                 getFileterSowRecordsResponse.httpStatusCode = StatusCodes.Status200OK;
+                getFileterSowRecordsResponse.totalRowCount = profiledata.Count();
                 return Ok(getFileterSowRecordsResponse);
             }
             catch (Exception ex)

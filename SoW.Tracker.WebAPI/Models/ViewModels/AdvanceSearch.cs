@@ -7,9 +7,9 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
 {
     public class AdvanceSearch
     {
-        public string  BusinessUnitId { get; set; }
-        public string CIOId { get; set; }
-        public string ChubbManagerId { get; set; }
+        public int  BusinessUnitId { get; set; }
+        public int CIOId { get; set; }
+        public int ChubbManagerId { get; set; }
         public string SOWNumber { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }

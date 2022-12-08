@@ -166,9 +166,9 @@ namespace SoW.Tracker.WebAPI.Controllers
             try
             {
                 response.httpStatusCode = StatusCodes.Status200OK;
-                IList<SoWTrackerProfile> data = await _SoWTracker.GetSoWTrackerSummary(SowName);
+                SoWTrackerProfile data = await _SoWTracker.GetSoWTrackerSummary(SowName);
                 response.data = data;
-                response.totalRowCount = data.Count;
+               
                 response.messagetype = ResponseMessagetype.success.ToString();
                 return Ok(response);
             }

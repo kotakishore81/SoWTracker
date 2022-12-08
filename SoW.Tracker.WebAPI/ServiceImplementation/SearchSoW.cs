@@ -101,16 +101,16 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             {
                 switch (Filter)
                 {
-                    case "SpecificRequest":
+                    case "SR":
                         strFinalFilterClause = " AND SOW_NM =" + "'" + Value + "'";
                         break;
-                    case "AssingedYou":
+                    case "AY":
                         strFinalFilterClause = " AND  CREATED_BY =" + "'" + Value + "'";
                         break;
-                    case "AssignedGroup":
+                    case "AG":
                         strFinalFilterClause = " AND GRP_ID =" + "'" + Value + "'";
                         break;
-                    case "All":
+                    case "ALL":
                         strFinalFilterClause = "";
                         break;
                     default:
@@ -168,7 +168,7 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                 }
                 if (!string.IsNullOrEmpty(advanceSearch.OriginalSoW))
                 {                  
-                    strFinalFilterClause = strFinalFilterClause + " AND  ORIGINAL_SOW_ID =" + "'" + advanceSearch.OriginalSoW + "'";
+                    strFinalFilterClause = strFinalFilterClause + " AND  ORI.ORIGINAL_SOW_ID =" + "'" + advanceSearch.OriginalSoW + "'";
                 }
                 strFinalFilterClause = strFinalFilterClause + this.GenerateSearhFilter(advanceSearch.Filter, advanceSearch.Value);
 

@@ -167,14 +167,14 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             }
             return result;
         }
-        public async Task<IList<SoWTrackerProfile>> GetSoWTrackerSummary(string SoW_Name)
+        public async Task<SoWTrackerProfile> GetSoWTrackerSummary(string SoW_Name)
         {
-            List<SoWTrackerProfile> lstSoWTracker = null;
+            SoWTrackerProfile lstSoWTracker = null;
             try
             {
                 await _context.LoadStoredProc(SP_SoWTracker.SP_SOWTRACKERSUMMARY)
                   .AddParam("@SOW_NM", SoW_Name)
-              .ExecAsync(async r => lstSoWTracker = await r.ToListAsync<SoWTrackerProfile>());
+              .ExecAsync(async r => lstSoWTracker = await r.SingleAsync<SoWTrackerProfile>());
             }
             catch
             {

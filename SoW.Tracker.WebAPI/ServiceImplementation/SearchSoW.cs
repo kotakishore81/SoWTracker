@@ -79,14 +79,14 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             }
             return lstSoWTracker;
         }
-        public async Task<IList<SoWTrackerProfile>> GetAdvanceSearchrSowRecords(AdvanceSearch advanceSearch)
+        public async Task<IList<SearchSOW>> GetAdvanceSearchrSowRecords(AdvanceSearch advanceSearch)
         {
-                List<SoWTrackerProfile> lstSoWTracker = null;
+                List<SearchSOW> lstSoWTracker = null;
             try
             {
                 await _context.LoadStoredProc(SP_SearchSoW.SP_GETFILTERSOWRECORDS)
                 .AddParam("@FilterCondition", this.GenerateAdvacneSearhFilter(advanceSearch))
-                .ExecAsync(async r => lstSoWTracker = await r.ToListAsync<SoWTrackerProfile>());
+                .ExecAsync(async r => lstSoWTracker = await r.ToListAsync<SearchSOW>());
             }
             catch (Exception)
             {
@@ -168,11 +168,11 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                 }
                 if (!string.IsNullOrEmpty(advanceSearch.OriginalSoW))
                 {                  
-                    strFinalFilterClause = strFinalFilterClause + " AND  ORI.ORIGINAL_SOW_ID =" + "'" + advanceSearch.OriginalSoW + "'";
+                    strFinalFilterClause = strFinalFilterClause + " AND  ORIGINAL_SOW_ID =" + "'" + advanceSearch.OriginalSoW + "'";
                 }
                 strFinalFilterClause = strFinalFilterClause + this.GenerateSearhFilter(advanceSearch.Filter, advanceSearch.Value);
 
-                strFinalFilterClause = "WHERE" + strFinalFilterClause.Remove(0, 4);
+                strFinalFilterClause = " WHERE" + strFinalFilterClause.Remove(0, 4);
             }
             catch (Exception)
             {

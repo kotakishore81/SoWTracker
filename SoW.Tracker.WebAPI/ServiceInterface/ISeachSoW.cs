@@ -14,6 +14,6 @@ namespace SoW.Tracker.WebAPI.ServiceInterface
         public Task<IList<CIO>> GetAllCIOs(int BU_ID);
         public Task<IList<ChubbManager>> GetAlllstChubbManagers(int CIO_ID);
         Task<IList<SoWTrackerProfile>> GetFileterSowRecords(string Filter, string Value);
-        Task<IList<SoWTrackerProfile>> GetAdvanceSearchrSowRecords(AdvanceSearch advanceSearch);
+        Task<IList<SearchSOW>> GetAdvanceSearchrSowRecords(AdvanceSearch advanceSearch);
     }
 }

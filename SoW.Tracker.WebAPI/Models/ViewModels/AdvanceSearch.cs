@@ -24,4 +24,15 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         //public int PageNumber { get; set; }
 
     }
+    public class SearchSOW
+    {
+        public Int64? sowId { get; set; }
+        public string soWPattern { get; set; }
+        public string businessUnit { get; set; }
+        public string cio { get; set; }
+
+        public string stage { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
+    }
 }

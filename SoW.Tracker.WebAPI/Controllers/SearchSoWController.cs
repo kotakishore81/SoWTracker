@@ -160,7 +160,7 @@ namespace SoW.Tracker.WebAPI.Controllers
             ControllerResponse getFileterSowRecordsResponse = new ControllerResponse();
             try
             {
-                IList<SoWTrackerProfile> profiledata = await _searchSoW.GetAdvanceSearchrSowRecords(advanceSearch);
+                IList<SearchSOW> profiledata = await _searchSoW.GetAdvanceSearchrSowRecords(advanceSearch);
                 getFileterSowRecordsResponse.data = profiledata;
                 getFileterSowRecordsResponse.httpStatusCode = StatusCodes.Status200OK;
                 getFileterSowRecordsResponse.totalRowCount = profiledata.Count();

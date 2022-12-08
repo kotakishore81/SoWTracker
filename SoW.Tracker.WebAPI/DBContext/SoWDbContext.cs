@@ -27,9 +27,9 @@ namespace SoW.Tracker.WebAPI.DBContext
 
                 _utilityFunctions = utilityFunctions;
                 _connectionString = connectionString;
-                if (!connectionString.isDeccrypted)
+            if (!connectionString.isDeccrypted)
+                _connectionString.SoWConnectionString = connectionString.SoWConnectionString;
                 //  _connectionString.SoWConnectionString = this.DecryptPassword(connectionString.SoWConnectionString);
-                connectionString.SoWConnectionString = connectionString.SoWConnectionString;
             _connectionString.isDeccrypted = true;
             }
 
@@ -68,6 +68,7 @@ namespace SoW.Tracker.WebAPI.DBContext
             {
                 if (!optionsBuilder.IsConfigured)
                 {
+
                     optionsBuilder.UseSqlServer(_connectionString.SoWConnectionString,
                          opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds));
                 }

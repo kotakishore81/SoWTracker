@@ -130,15 +130,15 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             string strFinalFilterClause = string.Empty;
             try
             {
-                if (!string.IsNullOrEmpty(Convert.ToString(advanceSearch.BusinessUnitId)))
+                if (advanceSearch.BusinessUnitId > 0)
                 {
                     strFinalFilterClause = strFinalFilterClause + " AND SOW_BU =" + "'" + advanceSearch.BusinessUnitId + "'";
                 }
-                if (!string.IsNullOrEmpty(Convert.ToString(advanceSearch.CIOId)))
+                if (advanceSearch.CIOId > 0)
                 {
                     strFinalFilterClause = strFinalFilterClause + " AND SOW_CIO =" + "'" + advanceSearch.CIOId + "'";
                 }
-                if (!string.IsNullOrEmpty(Convert.ToString(advanceSearch.ChubbManagerId)))
+                if (advanceSearch.ChubbManagerId > 0)
                 {
                     strFinalFilterClause = strFinalFilterClause+ " AND SOW_CM =" + "'" + advanceSearch.ChubbManagerId + "'";
                 }

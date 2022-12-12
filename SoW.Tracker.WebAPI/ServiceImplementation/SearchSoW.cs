@@ -70,7 +70,7 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             try
             {
                 await _context.LoadStoredProc(SP_SearchSoW.SP_GETFILTERSOWRECORDS)
-                .AddParam("@FilterCondition", this.GenerateSearhFilter(Filter, Value))
+                .AddParam("@FilterCondition", this.GenerateSearhFilter(Filter, Value, ""))
                 .ExecAsync(async r => lstSoWTracker = await r.ToListAsync<SoWTrackerProfile>());
             }
             catch (Exception)
@@ -94,7 +94,7 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             }
             return lstSoWTracker;
         }
-        private string GenerateSearhFilter(string Filter, string Value)
+        private string GenerateSearhFilter(string Filter, string Value,string strFinalFilterClauseLen)
         {
             string strFinalFilterClause = string.Empty;
             try
@@ -111,7 +111,15 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                         strFinalFilterClause = " AND GRP_ID =" + "'" + Value + "'";
                         break;
                     case "ALL":
-                        strFinalFilterClause = "";
+                        if(strFinalFilterClauseLen.Length > 0)
+                        {
+                            strFinalFilterClause = "";
+                        }
+                        else
+                        {
+                            strFinalFilterClause = "AND ";
+                        }
+                        
                         break;
                     default:
                         strFinalFilterClause = "";
@@ -170,9 +178,13 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                 {                  
                     strFinalFilterClause = strFinalFilterClause + " AND  ORIGINAL_SOW_ID =" + "'" + advanceSearch.OriginalSoW + "'";
                 }
-                strFinalFilterClause = strFinalFilterClause + this.GenerateSearhFilter(advanceSearch.Filter, advanceSearch.Value);
+                strFinalFilterClause = strFinalFilterClause + this.GenerateSearhFilter(advanceSearch.Filter, advanceSearch.Value, strFinalFilterClause);
 
                 strFinalFilterClause = " WHERE" + strFinalFilterClause.Remove(0, 4);
+                if(strFinalFilterClause == " WHERE")
+                {
+                    strFinalFilterClause = "";
+                }
             }
             catch (Exception)
             {

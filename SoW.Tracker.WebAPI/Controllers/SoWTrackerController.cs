@@ -55,10 +55,7 @@ namespace SoW.Tracker.WebAPI.Controllers
                     response.data = SoW_Id.ToString();
                     response.message = "SOW Record not created ";
                     response.messagetype = "Error";
-                }
-                
-
-                
+                }                         
             }
             catch (Exception ex)
             {

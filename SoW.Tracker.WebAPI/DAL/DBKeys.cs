@@ -35,8 +35,11 @@ namespace SoW.Tracker.WebAPI.DAL
         public const string SP_ONSHOREDMS = "sow_Get_On_Shore_DMS";
         public const string SP_YEARS = "sow_Get_Years";
         public const string SP_ORIGINALSOWS = "sow_Get_Original_SoWs";
-
-
+    }
+    public static class SP_SoWReview
+    {
+        public const string SP_GETREVIEW = "sow_Get_Review_Process_details";
+        public const string SP_POSTREVIEW = "sow_post_Review_Process_details";
 
     }
 }

@@ -70,7 +70,52 @@ namespace SoW.Tracker.WebAPI.Controllers
             }
             return Ok(response);
         }
-        
+        /// <summary>
+        /// API to add New SoW Tracker record
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateSoWTracker([FromBody] UpdateSoWTracker updateTracker)
+        {
+            ControllerResponse response = new ControllerResponse();
+            try
+            {
+                Int64 SoW_Id = await _SoWTracker.UpdateSoWTracker(updateTracker);
+                if (SoW_Id > 0)
+                {
+                    response.data = "SOW Record Updated  Successfully";
+                    response.message = "";
+                    response.messagetype = "Success";
+                    response.httpStatusCode = StatusCodes.Status200OK;
+                }
+                else
+                {
+                    response.data = SoW_Id.ToString();
+                    response.message = "SOW Record Not Updated  Successfully";
+                    response.messagetype = "Error";
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionData ed = new ExceptionData
+                {
+                    MethodException = ex,
+                    LogConfigSection = _logConfigSection,
+                    UserName = Environment.UserName,
+                    MethodName = System.Reflection.MethodBase.GetCurrentMethod().Name
+                };
+                return Ok(SoWExceptionHandler.LogException(ed));
+            }
+            return Ok(response);
+        }
+
         /// <summary>
         /// API to get fiels
         /// </summary>

@@ -75,12 +75,68 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             }
             return isInserted;
         }
+
         /// <summary>
         /// Add a new SoW Tracker
         /// </summary>
         /// <param name="newUser"></param>
         /// <returns></returns>
-    
+        public async Task<int> UpdateSoWTracker(UpdateSoWTracker updateSoW)
+        {
+            int isInserted = 0;
+            try
+            {
+                await _context.LoadStoredProc(SP_SoWTracker.SP_UPDATESOWTRACKER)
+                      .AddParam("@SOW_ID", updateSoW.soWID)
+                      .AddParam("@SOW_DESC", updateSoW.Description.Trim())
+                      .AddParam("@SOW_BU", updateSoW.BusinessUnit)
+                      .AddParam("@SOW_CIO", updateSoW.CIO)
+                      .AddParam("@SOW_CM", updateSoW.ChubbManager)
+                      .AddParam("@SOW_STATUS", updateSoW.Status.Trim())
+                      .AddParam("@SOW_CRT_TML", updateSoW.CreationTimeLine)
+                      .AddParam("@SOW_UPT_TML", updateSoW.UpdationTimeLine)
+                      .AddParam("@SOW_APR_TML", updateSoW.ApprovalTimeLine)
+                      .AddParam("@SOW_RN_FR", updateSoW.RenewalFrequency.Trim())
+                      .AddParam("@SOW_ST_DT", updateSoW.StartDate)
+                      .AddParam("@SOW_ED_DT", updateSoW.EndDate)
+                      .AddParam("@SOW_TCV", updateSoW.TCV)
+                      .AddParam("@SOW_VALUE", updateSoW.Value)
+                      .AddParam("@SOW_ILC", updateSoW.ILC.Trim())
+                      .AddParam("@SOW_IBM_ON_DM", updateSoW.IBMOnShoreDM)
+                      .AddParam("@SOW_IBM_OFF_DM", updateSoW.IBMOffShoreDM)
+                      .AddParam("@SOW_CNT_TY_ONE", updateSoW.ContractType1.Trim())
+                      .AddParam("@SOW_CNT_TY_TWO", updateSoW.ContractType2.Trim())
+                      .AddParam("@SOW_PRC_FINAL", updateSoW.PricingFinalized.Trim())
+                      .AddParam("@SOW_DCA_APR_DN", updateSoW.DCAApprovalDone.Trim())
+                      .AddParam("@SOW_CNT_REG_DN", updateSoW.ContractRegDone.Trim())
+                      .AddParam("@SOW_STF_CM", updateSoW.StaffingComplete.Trim())
+                      .AddParam("@SOW_PLN_GP", updateSoW.PlannedGP.Trim())
+                      .AddParam("@SOW_ACT_GP", updateSoW.ActualGP.Trim())
+                      .AddParam("@SOW_STAGE", updateSoW.Stage.Trim())
+                      .AddParam("@SOW_FRM_IBS", updateSoW.FromIBS.Trim())
+                      .AddParam("@SOW_SALES_CNT", updateSoW.SalesConnect.Trim())
+                      .AddParam("@SOW_DT_SUB_SN", updateSoW.DateSubmissionSigning)
+                      .AddParam("@SOW_SN_DT_IF_SN", updateSoW.SignDateIfSigned)
+                      .AddParam("@SOW_OPP_ID", updateSoW.OpportunityID)
+                      .AddParam("@SOW_REMARKS", updateSoW.Remarks)
+                      .AddParam("@UPDATED_BY", updateSoW.UpdatedBy)
+                      .AddParam("@OUT_STATUS", out IOutParam<int> returnValue)
+                          .ExecNonQueryAsync();
+                isInserted = returnValue.Value; 
+            }
+            catch
+            {
+                throw;
+            }
+            return isInserted;
+        }
+
+        /// <summary>
+        /// Add a new SoW Tracker
+        /// </summary>
+        /// <param name="newUser"></param>
+        /// <returns></returns>
+
         public async Task<IList<OffShoreDM>> GetOffShoreDMS()
         {
             List<OffShoreDM> lsOffShoreDMS = null;

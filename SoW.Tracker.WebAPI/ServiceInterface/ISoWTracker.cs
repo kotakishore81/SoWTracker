@@ -9,6 +9,7 @@ namespace SoW.Tracker.WebAPI.ServiceInterface
    public interface ISoWTracker
     {
         Task<int> AddNewSoWTracker(SoWTrackerProfile newSoW);
+        Task<int> UpdateSoWTracker(UpdateSoWTracker updateSoW);
         Task<SoWTrackerSummary> GetSoWTrackerSummary(string SoW_Name);
         Task<SoWTrackerProfile> GetMaxSOWId();
         Task<SoWTrackerProfile> GetMaxSOWCRId(string OrignalSOW);

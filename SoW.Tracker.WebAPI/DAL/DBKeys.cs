@@ -27,6 +27,7 @@ namespace SoW.Tracker.WebAPI.DAL
     public static class SP_SoWTracker
     {
         public const string SP_ADDNEWSOWTRACKER = "sow_New_Add_SOW_Tracker";
+        public const string SP_UPDATESOWTRACKER = "sow_update_SOW_Tracker";
         public const string SP_ADDSOWTRACKERFILES = "sow_Add_Tracker_Files";
         public const string SP_SOWTRACKERSUMMARY = "sow_Get_SoW_Tracker_Summary";
         public const string SP_MAXORIGINALID = "sow_Get_Max_Original_SoW";

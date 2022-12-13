@@ -34,5 +34,9 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string stage { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
+        public string RenewalFrequency { get; set; }
+        public string IBMOnShoreDM { get; set; }
+        public string IBMOffShoreDM { get; set; }
+        public string OriginalSoW { get; set; }
     }
 }

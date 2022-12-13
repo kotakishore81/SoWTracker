@@ -105,7 +105,7 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                         strFinalFilterClause = " AND SOW_NM =" + "'" + Value + "'";
                         break;
                     case "AY":
-                        strFinalFilterClause = " AND  CREATED_BY =" + "'" + Value + "'";
+                        strFinalFilterClause = " AND  TR.CREATED_BY =" + "'" + Value + "'";
                         break;
                     case "AG":
                         strFinalFilterClause = " AND GRP_ID =" + "'" + Value + "'";
@@ -176,7 +176,7 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                 }
                 if (!string.IsNullOrEmpty(advanceSearch.OriginalSoW))
                 {                  
-                    strFinalFilterClause = strFinalFilterClause + " AND  ORIGINAL_SOW_ID =" + "'" + advanceSearch.OriginalSoW + "'";
+                    strFinalFilterClause = strFinalFilterClause + " AND  TR.ORIGINAL_SOW_ID =" + "'" + advanceSearch.OriginalSoW + "'";
                 }
                 strFinalFilterClause = strFinalFilterClause + this.GenerateSearhFilter(advanceSearch.Filter, advanceSearch.Value, strFinalFilterClause);
 

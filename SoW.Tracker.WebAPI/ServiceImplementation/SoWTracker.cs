@@ -23,13 +23,15 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
         /// </summary>
         /// <param name="newUser"></param>
         /// <returns></returns>
-        public async Task<int> AddNewSoWTracker(SoWTrackerProfile newSoW)
+        public async Task<int> AddNewSoWTracker(SoWTrackerProfile newSoW, int year, Int64 auto_inc)
         {
             int isInserted = 0;
             try
             {
                 await _context.LoadStoredProc(SP_SoWTracker.SP_ADDNEWSOWTRACKER)
                       .AddParam("@SOW_TYPE", newSoW.SoWType)
+                      .AddParam("@Year", year)
+                      .AddParam("@ORIGINAL_YEAR_AUTO_ID", auto_inc)
                       .AddParam("@ORIGINAL_SOW_PATTERN", newSoW.OriginalSoWPattern)
                       .AddParam("@SOW_CR_NO", newSoW.SoWCRId)
                       .AddParam("@SOW_NM", newSoW.SoWCRPattern.Trim())
@@ -194,12 +196,13 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             return lsSoWriginal;
         }
 
-        public async Task<SoWTrackerProfile> GetMaxSOWId()
+        public async Task<SoWTrackerProfile> GetMaxSOWId(string Year)
         {
             SoWTrackerProfile? result = null;
             try
             {
                 await _context.LoadStoredProc(SP_SoWTracker.SP_MAXORIGINALID)
+                    .AddParam("@Year", Year)
                     .ExecAsync(async r => result = await r.FirstOrDefaultAsync<SoWTrackerProfile>());
             }
             catch 

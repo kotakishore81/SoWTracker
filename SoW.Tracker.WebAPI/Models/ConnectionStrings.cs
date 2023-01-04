@@ -10,6 +10,7 @@ namespace SoW.Tracker.WebAPI.Models
     public class ConnectionStrings
     {
         public string SoWConnectionString { get; set; }
+        public string EmailConnectionString { get; set; }
         public bool isDeccrypted { get; set; }
     }
 }

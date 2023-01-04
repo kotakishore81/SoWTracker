@@ -8,10 +8,10 @@ namespace SoW.Tracker.WebAPI.ServiceInterface
 {
    public interface ISoWTracker
     {
-        Task<int> AddNewSoWTracker(SoWTrackerProfile newSoW);
+        Task<int> AddNewSoWTracker(SoWTrackerProfile newSoW, int year, Int64 auto_inc);
         Task<int> UpdateSoWTracker(UpdateSoWTracker updateSoW);
         Task<SoWTrackerSummary> GetSoWTrackerSummary(string SoW_Name);
-        Task<SoWTrackerProfile> GetMaxSOWId();
+        Task<SoWTrackerProfile> GetMaxSOWId(string Year);
         Task<SoWTrackerProfile> GetMaxSOWCRId(string OrignalSOW);
         Task<IList<OffShoreDM>> GetOffShoreDMS();
         Task<IList<OnShoreDM>> GetOnShoreDMS();

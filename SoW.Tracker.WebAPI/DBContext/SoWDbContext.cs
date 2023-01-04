@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure.Identity;
+using Microsoft.EntityFrameworkCore;
 using SoW.Tracker.WebAPI.Models;
 using SoW.Tracker.WebAPI.Utility.OtherUtilities.OtherUtilitiesInterface;
 using System;
@@ -17,24 +18,31 @@ namespace SoW.Tracker.WebAPI.DBContext
             /// </summary>
             private ConnectionStrings _connectionString { get; set; }
             private IUtilityFunctions _utilityFunctions = null;
+        private readonly IConfiguration _configuration;
 
-            /// <summary>
-            /// Constructor of IDCContext to inject the Connection String.
-            /// </summary>
-            /// <param name="connectionString"></param>
-            public SoWDbContext(ConnectionStrings connectionString, IUtilityFunctions utilityFunctions)
+        /// <summary>
+        /// Constructor of IDCContext to inject the Connection String.
+        /// </summary>
+        /// <param name="connectionString"></param>
+
+        public SoWDbContext(ConnectionStrings connectionString, IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _connectionString = connectionString;
+            _connectionString.SoWConnectionString = connectionString.SoWConnectionString;
+            if (_configuration["databaseEnv"] != "local")
             {
-
-                _utilityFunctions = utilityFunctions;
-                _connectionString = connectionString;
-            if (!connectionString.isDeccrypted)
-                _connectionString.SoWConnectionString = connectionString.SoWConnectionString;
-                //  _connectionString.SoWConnectionString = this.DecryptPassword(connectionString.SoWConnectionString);
-            _connectionString.isDeccrypted = true;
+                var conn = (Microsoft.Data.SqlClient.SqlConnection)Database.GetDbConnection();
+                var opt = new DefaultAzureCredentialOptions() { ExcludeSharedTokenCacheCredential = true };
+                var credential = new DefaultAzureCredential(opt);
+                var token = credential
+                        .GetToken(new Azure.Core.TokenRequestContext(
+                            new[] { "https://database.windows.net/.default" }));
+                conn.AccessToken = token.Token;
             }
+        }
 
-
-            private string DecryptPassword(string sConstring)
+        private string DecryptPassword(string sConstring)
             {
                 string[] sFrstSplits = sConstring.Split(';');
                 string sModConnStr = string.Empty;

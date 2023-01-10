@@ -42,15 +42,17 @@ namespace SoW.Tracker.WebAPI.Controllers
             ControllerResponse response = new ControllerResponse();
             try
             {
+                string state = "";
                 int year = 0;
                 Int64 auto_inc = 0;
                 if (newTracker.SoWType == "OR")
                 {
                     string[] OriginalSoW = newTracker.OriginalSoWPattern.Split('-');
+                    state = OriginalSoW[1];
                     year = Convert.ToInt32(OriginalSoW[3]);
                     auto_inc = Convert.ToInt64(OriginalSoW[4]);
                 }
-                Int64 SoW_Id = await _SoWTracker.AddNewSoWTracker(newTracker, year, auto_inc);
+                Int64 SoW_Id = await _SoWTracker.AddNewSoWTracker(newTracker,  state,year, auto_inc);
                 if(SoW_Id> 0)
                 {
                     response.data = newTracker.SoWCRPattern;
@@ -140,7 +142,7 @@ namespace SoW.Tracker.WebAPI.Controllers
             ControllerResponse response = new ControllerResponse();
             try
             {
-                SoWTrackerProfile result = await _SoWTracker.GetMaxSOWId(Year);
+                SoWTrackerProfile result = await _SoWTracker.GetMaxSOWId(Year, State);
                 string FinalSoWid = GenarateSOWId(Convert.ToString(result.OriginalSoWId+1));
                 FinalSoWid = "IBM-" + State + "-" + "SOW-" + Year + "-" + FinalSoWid;
                 response.data = FinalSoWid;

@@ -36,7 +36,6 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string ?ContractRegDone { get; set; }
         public string? StaffingComplete { get; set; }
         public string? PlannedGP { get; set; }
-        public string? ActualGP { get; set; }
         public string? Stage { get; set; }
         public string ? FromIBS { get; set; }
         public string ?SalesConnect { get; set; }
@@ -132,8 +131,8 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public decimal TCV { get; set; }
         public decimal Value { get; set; }
         public string? ILC { get; set; }
-        public int IBMOnShoreDM { get; set; }
-        public int IBMOffShoreDM { get; set; }
+        public string IBMOnShoreDM { get; set; }
+        public string IBMOffShoreDM { get; set; }
         public string? ContractType1 { get; set; }
         public string? ContractType2 { get; set; }
         public string? PricingFinalized { get; set; }

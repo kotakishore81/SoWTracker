@@ -23,13 +23,14 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
         /// </summary>
         /// <param name="newUser"></param>
         /// <returns></returns>
-        public async Task<int> AddNewSoWTracker(SoWTrackerProfile newSoW, int year, Int64 auto_inc)
+        public async Task<int> AddNewSoWTracker(SoWTrackerProfile newSoW, string state,int year, Int64 auto_inc)
         {
             int isInserted = 0;
             try
             {
                 await _context.LoadStoredProc(SP_SoWTracker.SP_ADDNEWSOWTRACKER)
                       .AddParam("@SOW_TYPE", newSoW.SoWType)
+                      .AddParam("@State", state)
                       .AddParam("@Year", year)
                       .AddParam("@ORIGINAL_YEAR_AUTO_ID", auto_inc)
                       .AddParam("@ORIGINAL_SOW_PATTERN", newSoW.OriginalSoWPattern)
@@ -58,7 +59,6 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                       .AddParam("@SOW_CNT_REG_DN", newSoW.ContractRegDone.Trim())
                       .AddParam("@SOW_STF_CM", newSoW.StaffingComplete.Trim())
                       .AddParam("@SOW_PLN_GP", newSoW.PlannedGP.Trim())
-                      .AddParam("@SOW_ACT_GP", newSoW.ActualGP.Trim())
                       .AddParam("@SOW_STAGE", newSoW.Stage.Trim())
                       .AddParam("@SOW_FRM_IBS", newSoW.FromIBS.Trim())
                       .AddParam("@SOW_SALES_CNT", newSoW.SalesConnect.Trim())
@@ -196,13 +196,14 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             return lsSoWriginal;
         }
 
-        public async Task<SoWTrackerProfile> GetMaxSOWId(string Year)
+        public async Task<SoWTrackerProfile> GetMaxSOWId(string Year, string State)
         {
             SoWTrackerProfile? result = null;
             try
             {
                 await _context.LoadStoredProc(SP_SoWTracker.SP_MAXORIGINALID)
                     .AddParam("@Year", Year)
+                    .AddParam("@State", State)
                     .ExecAsync(async r => result = await r.FirstOrDefaultAsync<SoWTrackerProfile>());
             }
             catch 

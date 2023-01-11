@@ -18,11 +18,14 @@ namespace SoW.Tracker.WebAPI.Controllers
     {
         readonly ISeachSoW _searchSoW = null;
         readonly LoggingConfigSection _logConfigSection = null;
+        readonly IEmailCommunication _IEmail = null;
         public SearchSoWController(ISeachSoW searchSoW,
-            IOptions<LoggingConfigSection> logConfigSection)
+            IOptions<LoggingConfigSection> logConfigSection,
+            IEmailCommunication iEmail)
         {
             _searchSoW = searchSoW;
             _logConfigSection = logConfigSection.Value;
+            _IEmail = iEmail;
         }
 
         /// <summary>
@@ -41,6 +44,7 @@ namespace SoW.Tracker.WebAPI.Controllers
             ControllerResponse response = new ControllerResponse();
             try
             {
+              //  _IEmail.EmailSend();
                 response.httpStatusCode = StatusCodes.Status200OK;
                 IList<BusinessUnit> data = await _searchSoW.GetAllBusinessUnits();               
                 response.data = data;

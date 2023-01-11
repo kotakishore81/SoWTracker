@@ -1,6 +1,7 @@
 ﻿namespace SoW.Tracker.WebAPI.ServiceInterface
 {
-    public class IEmailCommunication
+    public interface IEmailCommunication
     {
+        public string EmailSend();
     }
 }

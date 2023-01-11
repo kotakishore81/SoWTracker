@@ -54,6 +54,7 @@ namespace SoW.Tracker.WebAPI
             services.AddScoped<ISeachSoW, SearchSoW>();
             services.AddScoped<ISoWTracker, SoWTracker>();
             services.AddScoped<ISoWReview, SoWReview>();
+            services.AddScoped<IEmailCommunication, EmailCommunication>();
             //Inject IUtilityFunctions to UtilityFunctions class.
             services.AddScoped<IUtilityFunctions, UtilityFunctions>();
             services.AddDbContext<SoWDbContext>();

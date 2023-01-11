@@ -35,7 +35,7 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? DCAApprovalDone { get; set; }
         public string ?ContractRegDone { get; set; }
         public string? StaffingComplete { get; set; }
-        public string? PlannedGP { get; set; }
+        public decimal? PlannedGP { get; set; }
         public string? Stage { get; set; }
         public string ? FromIBS { get; set; }
         public string ?SalesConnect { get; set; }
@@ -74,8 +74,7 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? DCAApprovalDone { get; set; }
         public string? ContractRegDone { get; set; }
         public string? StaffingComplete { get; set; }
-        public string? PlannedGP { get; set; }
-        public string? ActualGP { get; set; }
+        public decimal? PlannedGP { get; set; }
         public string? Stage { get; set; }
         public string? FromIBS { get; set; }
         public string? SalesConnect { get; set; }
@@ -140,7 +139,6 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? ContractRegDone { get; set; }
         public string? StaffingComplete { get; set; }
         public string? PlannedGP { get; set; }
-        public string? ActualGP { get; set; }
         public string? Stage { get; set; }
         public string? FromIBS { get; set; }
         public string? SalesConnect { get; set; }

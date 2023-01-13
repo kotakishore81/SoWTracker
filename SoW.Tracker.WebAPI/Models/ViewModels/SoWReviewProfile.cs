@@ -8,8 +8,10 @@
         public DateTime SoWCreatedOn { get; set; }
         public string TestApproved { get; set; }
         public string TestApprovedName { get; set; }
+        public string TestEmailID { get; set; }
         public string ArcApproved { get; set; }
         public string ArcApprovedName { get; set; }
+        public string ArcEmailID { get; set; }
         public string Reason { get; set; }
         public DateTime ? TestArcSubmittedOn { get; set; }
         public string OffshorePMName { get; set; }
@@ -30,11 +32,14 @@
     public class SoWPostReview
     {
         public Int64 SoWID { get; set; }
+        public string soWPattern { get; set; }
         public int Status { get; set; }
         public string TestApproved { get; set; }
         public string TestApprovedName { get; set; }
+        public string TestEmailID { get; set; }
         public string ArcApproved { get; set; }
         public string ArcApprovedName { get; set; }
+        public string ArcEmailID { get; set; }
         public string Reason { get; set; }
         public string OffshorePMName { get; set; }
         public string OffshorePMEmail { get; set; }

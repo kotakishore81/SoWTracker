@@ -75,6 +75,112 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
             } while (DateTime.Now.Ticks - start < duration.Ticks);
             return "";
         }
+        public string EmailSend_TestArcReviewProcess(string testEmail, string ArcEmail,string sowNo)
+        {
+            EmailClient emailClient = new EmailClient(_connectionString.EmailConnectionString);
+            //Replace with your domain and modify the content, recipient details as required
+
+            EmailContent emailContent = new EmailContent("SoW Tracker" + "-" + sowNo + "-" + "Test and Architect Team Approved");
+            var url = "https://sow-tracker.azurewebsites.net";
+            var link = $"<a href='{url}'>Click here</a>";
+            // emailContent.PlainText = "Thanks for creating SoW please check the below link to update the status.";
+
+            emailContent.Html = $"<p>Thanks for update SoW please check the below link to check  the current status.</p>";
+            emailContent.Html = emailContent.Html + $"<p>SoW No: {sowNo}</p>";
+            emailContent.Html = emailContent.Html + $"<a href='{url}'>Click here</a>";
+
+
+
+            List<EmailAddress> emailAddresses = new List<EmailAddress>();
+
+            //  emailAddresses.Add(new EmailAddress("kota.malli.kishore@ibm.com") { DisplayName = "Friendly Display Name" });
+            //  emailAddresses.Add(new EmailAddress("kotakishore81@gmail.com") { DisplayName = "Friendly Display Name" });
+
+
+            List<string> persons = new List<string>()
+                    {testEmail ,ArcEmail};
+            for (int i = 0; i < persons.Count; i++)
+            {
+                emailAddresses.Add(new EmailAddress(persons[i]) { DisplayName = "Friendly Display Name" });
+            }
+
+
+            //{ new EmailAddress("kota.malli.kishore@ibm.com") { DisplayName = "Friendly Display Name" } };
+            EmailRecipients emailRecipients = new EmailRecipients(emailAddresses);
+            EmailMessage emailMessage = new EmailMessage("donotreply@d64f3b80-830c-4e0a-b5ca-72ef1db7617e.azurecomm.net", emailContent, emailRecipients);
+            SendEmailResult emailResult = emailClient.Send(emailMessage, CancellationToken.None);
+            Console.WriteLine($"MessageId = {emailResult.MessageId}");
+            Response<SendStatusResult> messageStatus = null;
+            messageStatus = emailClient.GetSendStatus(emailResult.MessageId);
+            Console.WriteLine($"MessageStatus = {messageStatus.Value.Status}");
+            TimeSpan duration = TimeSpan.FromMinutes(3);
+            long start = DateTime.Now.Ticks;
+            do
+            {
+                messageStatus = emailClient.GetSendStatus(emailResult.MessageId);
+                if (messageStatus.Value.Status != SendStatus.Queued)
+                {
+                    Console.WriteLine($"MessageStatus = {messageStatus.Value.Status}");
+                    break;
+                }
+                Thread.Sleep(2000);
+
+            } while (DateTime.Now.Ticks - start < duration.Ticks);
+            return "";
+        }
+        public string EmailSendManagerReview(string ManagerEmail, string sowNo, string Manager)
+        {
+            EmailClient emailClient = new EmailClient(_connectionString.EmailConnectionString);
+            //Replace with your domain and modify the content, recipient details as required
+
+            EmailContent emailContent = new EmailContent("SoW Tracker" + "-" + sowNo + "-" + Manager + "-" + "Approved");
+            var url = "https://sow-tracker.azurewebsites.net";
+            var link = $"<a href='{url}'>Click here</a>";
+            // emailContent.PlainText = "Thanks for creating SoW please check the below link to update the status.";
+
+            emailContent.Html = $"<p>Thanks for update SoW please check the below link to check  the current status.</p>";
+            emailContent.Html = emailContent.Html + $"<p>SoW No: {sowNo}</p>";
+            emailContent.Html = emailContent.Html + $"<a href='{url}'>Click here</a>";
+
+
+
+            List<EmailAddress> emailAddresses = new List<EmailAddress>();
+
+
+            List<string> persons = new List<string>()
+                    {ManagerEmail};
+            for (int i = 0; i < persons.Count; i++)
+            {
+                emailAddresses.Add(new EmailAddress(persons[i]) { DisplayName = "Friendly Display Name" });
+            }
+
+
+
+
+
+            //{ new EmailAddress("kota.malli.kishore@ibm.com") { DisplayName = "Friendly Display Name" } };
+            EmailRecipients emailRecipients = new EmailRecipients(emailAddresses);
+            EmailMessage emailMessage = new EmailMessage("donotreply@d64f3b80-830c-4e0a-b5ca-72ef1db7617e.azurecomm.net", emailContent, emailRecipients);
+            SendEmailResult emailResult = emailClient.Send(emailMessage, CancellationToken.None);
+            Console.WriteLine($"MessageId = {emailResult.MessageId}");
+            Response<SendStatusResult> messageStatus = null;
+            messageStatus = emailClient.GetSendStatus(emailResult.MessageId);
+            Console.WriteLine($"MessageStatus = {messageStatus.Value.Status}");
+            TimeSpan duration = TimeSpan.FromMinutes(3);
+            long start = DateTime.Now.Ticks;
+            do
+            {
+                messageStatus = emailClient.GetSendStatus(emailResult.MessageId);
+                if (messageStatus.Value.Status != SendStatus.Queued)
+                {
+                    Console.WriteLine($"MessageStatus = {messageStatus.Value.Status}");
+                    break;
+                }
+                Thread.Sleep(10000);
+
+            } while (DateTime.Now.Ticks - start < duration.Ticks);
+            return "";
+        }
 
     }
 }

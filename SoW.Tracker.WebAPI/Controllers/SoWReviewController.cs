@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using SoW.Tracker.WebAPI.Models;
 using SoW.Tracker.WebAPI.Models.ViewModels;
+using SoW.Tracker.WebAPI.ServiceImplementation;
 using SoW.Tracker.WebAPI.ServiceInterface;
 using SoW.Tracker.WebAPI.Utility;
 
@@ -14,11 +15,14 @@ namespace SoW.Tracker.WebAPI.Controllers
     {
         readonly ISoWReview _SoWReview = null;
         readonly LoggingConfigSection _logConfigSection = null;
+        readonly IEmailCommunication _IEmail = null;
         public SoWReviewController(ISoWReview SoWReview,
-            IOptions<LoggingConfigSection> logConfigSection)
+            IOptions<LoggingConfigSection> logConfigSection,
+            IEmailCommunication iEmail)
         {
             _SoWReview = SoWReview;
             _logConfigSection = logConfigSection.Value;
+            _IEmail = iEmail;
         }
         /// <summary>
         /// API to get SOW Tracker summary
@@ -72,16 +76,39 @@ namespace SoW.Tracker.WebAPI.Controllers
             ControllerResponse response = new ControllerResponse();
             try
             {
-                Int64 SoW_Id = await _SoWReview.AddSoWReviewProcess(postReview);
-                if (SoW_Id > 0)
-                {
+                int SoW_No = await _SoWReview.AddSoWReviewProcess(postReview);
+                if (SoW_No > 0)
+                { 
+                    if(postReview.Status == 3)
+                    {
+                        _IEmail.EmailSend_TestArcReviewProcess(postReview.TestEmailID,postReview.ArcEmailID, postReview.soWPattern);
+                    }
+                    else if(postReview.Status == 4)
+                    {
+                        _IEmail.EmailSendManagerReview(postReview.OffshorePMEmail, postReview.soWPattern, "OffShore PM");
+                    }
+                    else if (postReview.Status == 5)
+                    {
+                        _IEmail.EmailSendManagerReview(postReview.OffshoreDMEmail, postReview.soWPattern, "OffShore DM");
+                    }
+                    else if (postReview.Status == 6)
+                    {
+                        _IEmail.EmailSendManagerReview(postReview.OnshoreDMEmail, postReview.soWPattern, "OnShore DM");
+                    }
+                    else if (postReview.Status == 7)
+                    {
+                        _IEmail.EmailSendManagerReview(postReview.FinalAprEmail, postReview.soWPattern,"Final Approval");
+                    }
+
+
+
                     response.data = "Successfully Updated the status";                  
                     response.messagetype = "Success";
                     response.httpStatusCode = StatusCodes.Status200OK;
                 }
                 else
                 {
-                    response.data = SoW_Id.ToString();
+                    response.data = SoW_No.ToString();
                     response.message = "SOW Record not created ";
                     response.messagetype = "Error";
                 }

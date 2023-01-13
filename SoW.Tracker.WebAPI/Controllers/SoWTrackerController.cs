@@ -19,11 +19,14 @@ namespace SoW.Tracker.WebAPI.Controllers
     {
         readonly ISoWTracker _SoWTracker = null;
         readonly LoggingConfigSection _logConfigSection = null;
+        readonly IEmailCommunication _IEmail = null;
         public SoWTrackerController(ISoWTracker SoWTracker,
-            IOptions<LoggingConfigSection> logConfigSection)
+            IOptions<LoggingConfigSection> logConfigSection,
+            IEmailCommunication iEmail)
         {
             _SoWTracker = SoWTracker;
             _logConfigSection = logConfigSection.Value;
+            _IEmail = iEmail;
         }
         /// <summary>
         /// API to add New SoW Tracker record
@@ -55,6 +58,7 @@ namespace SoW.Tracker.WebAPI.Controllers
                 Int64 SoW_Id = await _SoWTracker.AddNewSoWTracker(newTracker,  state,year, auto_inc);
                 if(SoW_Id> 0)
                 {
+                    _IEmail.EmailSend(newTracker.SoWCRPattern);
                     response.data = newTracker.SoWCRPattern;
                     response.message = "SOW Record created Successfully";
                     response.messagetype = "Success";

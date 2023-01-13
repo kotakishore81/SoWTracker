@@ -10,25 +10,25 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? SoWType { get; set; }
         public Int64? OriginalSoWId { get; set; }
         public string? OriginalSoWPattern { get; set; }
-        public int SoWCRId { get; set; }
+        public int  SoWCRId { get; set; }
         public string? SoWCRPattern { get; set; }
      
         public string? Description { get; set; }
-        public int BusinessUnit { get; set; }
-        public int CIO { get; set; }
-        public int ChubbManager { get; set; }
+        public int ? BusinessUnit { get; set; }
+        public int ?CIO { get; set; }
+        public int? ChubbManager { get; set; }
         public string? Status { get; set; }
-        public DateTime CreationTimeLine { get; set; }
-        public DateTime UpdationTimeLine { get; set; }
-        public DateTime ApprovalTimeLine { get; set; }
+        public DateTime?  CreationTimeLine { get; set; }
+        public DateTime? UpdationTimeLine { get; set; }
+        public DateTime? ApprovalTimeLine { get; set; }
         public string? RenewalFrequency { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public decimal TCV { get; set; }
-        public decimal Value { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public decimal? TCV { get; set; }
+        public decimal? Value { get; set; }
         public string? ILC { get; set; }
-        public int IBMOnShoreDM { get; set; }
-        public int IBMOffShoreDM { get; set; }
+        public int? IBMOnShoreDM { get; set; }
+        public int? IBMOffShoreDM { get; set; }
         public string? ContractType1 { get; set; }
         public string? ContractType2 { get; set; }
         public string? PricingFinalized { get; set; }
@@ -39,11 +39,11 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? Stage { get; set; }
         public string ? FromIBS { get; set; }
         public string ?SalesConnect { get; set; }
-        public DateTime DateSubmissionSigning { get; set; }
-        public DateTime SignDateIfSigned { get; set; }
+        public DateTime? DateSubmissionSigning { get; set; }
+        public DateTime? SignDateIfSigned { get; set; }
         public string ?OpportunityID { get; set; }
         public string ? Remarks { get; set; }
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string? UpdatedBy { get; set; }
@@ -138,7 +138,7 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? DCAApprovalDone { get; set; }
         public string? ContractRegDone { get; set; }
         public string? StaffingComplete { get; set; }
-        public string? PlannedGP { get; set; }
+        public decimal? PlannedGP { get; set; }
         public string? Stage { get; set; }
         public string? FromIBS { get; set; }
         public string? SalesConnect { get; set; }

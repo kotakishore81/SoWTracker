@@ -5,7 +5,7 @@
         public Int64 SoWID { get; set; }
         public string SoWPattern { get; set; }
         public string SoWCreatedBy { get; set; }
-        public DateTime SoWCreatedOn { get; set; }
+        public DateTime ?SoWCreatedOn { get; set; }
         public string TestApproved { get; set; }
         public string TestApprovedName { get; set; }
         public string TestEmailID { get; set; }

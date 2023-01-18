@@ -152,7 +152,7 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                 }
                 if (!string.IsNullOrEmpty(Convert.ToString(advanceSearch.SOWNumber)))
                 {
-                    strFinalFilterClause = strFinalFilterClause + " AND SOW_NM =" + "'" + advanceSearch.SOWNumber + "'";
+                    strFinalFilterClause = strFinalFilterClause + " AND LTRIM(RTRIM(SOW_NM)) =" + "'" + advanceSearch.SOWNumber + "'";
                 }
                 if (!string.IsNullOrEmpty(advanceSearch.StartDate))
                 {

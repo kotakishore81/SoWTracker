@@ -45,9 +45,9 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string ? Remarks { get; set; }
         public int? GroupId { get; set; }
         public string? CreatedBy { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
         public string? UpdatedBy { get; set; }
-        public DateTime UpdateOn { get; set; }
+        public DateTime? UpdateOn { get; set; }
     }
     public class UpdateSoWTracker
     {
@@ -57,12 +57,12 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public int CIO { get; set; }
         public int ChubbManager { get; set; }
         public string? Status { get; set; }
-        public DateTime CreationTimeLine { get; set; }
-        public DateTime UpdationTimeLine { get; set; }
-        public DateTime ApprovalTimeLine { get; set; }
+        public DateTime? CreationTimeLine { get; set; }
+        public DateTime? UpdationTimeLine { get; set; }
+        public DateTime? ApprovalTimeLine { get; set; }
         public string? RenewalFrequency { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public decimal TCV { get; set; }
         public decimal Value { get; set; }
         public string? ILC { get; set; }
@@ -78,8 +78,8 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? Stage { get; set; }
         public string? FromIBS { get; set; }
         public string? SalesConnect { get; set; }
-        public DateTime DateSubmissionSigning { get; set; }
-        public DateTime SignDateIfSigned { get; set; }
+        public DateTime? DateSubmissionSigning { get; set; }
+        public DateTime? SignDateIfSigned { get; set; }
         public string? OpportunityID { get; set; }
         public string? Remarks { get; set; }
         public string? UpdatedBy { get; set; }
@@ -121,12 +121,12 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string CIO { get; set; }
         public string ChubbManager { get; set; }
         public string? Status { get; set; }
-        public DateTime CreationTimeLine { get; set; }
-        public DateTime UpdationTimeLine { get; set; }
-        public DateTime ApprovalTimeLine { get; set; }
+        public DateTime? CreationTimeLine { get; set; }
+        public DateTime? UpdationTimeLine { get; set; }
+        public DateTime? ApprovalTimeLine { get; set; }
         public string? RenewalFrequency { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public decimal TCV { get; set; }
         public decimal Value { get; set; }
         public string? ILC { get; set; }
@@ -142,8 +142,8 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? Stage { get; set; }
         public string? FromIBS { get; set; }
         public string? SalesConnect { get; set; }
-        public DateTime DateSubmissionSigning { get; set; }
-        public DateTime SignDateIfSigned { get; set; }
+        public DateTime? DateSubmissionSigning { get; set; }
+        public DateTime? SignDateIfSigned { get; set; }
         public string? OpportunityID { get; set; }
         public string? Remarks { get; set; }
 

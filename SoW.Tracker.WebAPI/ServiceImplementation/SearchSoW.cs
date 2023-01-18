@@ -121,8 +121,11 @@ namespace SoW.Tracker.WebAPI.ServiceImplementation
                         }
                         
                         break;
+                    case "" :
+                        strFinalFilterClause = " AND SOW_ED_DT > DATEADD(day, 0, getdate()) and  SOW_ED_DT < DATEADD(day, +31, getdate())";
+                        break;
                     default:
-                        strFinalFilterClause = "";
+                        strFinalFilterClause = " AND SOW_ED_DT > DATEADD(day, 0, getdate()) and  SOW_ED_DT < DATEADD(day, +31, getdate())";
                         break;
 
                 }

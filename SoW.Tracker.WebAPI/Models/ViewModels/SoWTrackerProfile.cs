@@ -39,9 +39,8 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? Stage { get; set; }
         public string ? FromIBS { get; set; }
         public string ?SalesConnect { get; set; }
-        public DateTime? DateSubmissionSigning { get; set; }
-        public DateTime? SignDateIfSigned { get; set; }
-        public string ?OpportunityID { get; set; }
+        public string? DateSubmissionSigning { get; set; }
+        public string? SignDateIfSigned { get; set; }
         public string ? Remarks { get; set; }
         public int? GroupId { get; set; }
         public string? CreatedBy { get; set; }
@@ -80,7 +79,6 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? SalesConnect { get; set; }
         public DateTime? DateSubmissionSigning { get; set; }
         public DateTime? SignDateIfSigned { get; set; }
-        public string? OpportunityID { get; set; }
         public string? Remarks { get; set; }
         public string? UpdatedBy { get; set; }
 
@@ -121,12 +119,12 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string CIO { get; set; }
         public string ChubbManager { get; set; }
         public string? Status { get; set; }
-        public DateTime? CreationTimeLine { get; set; }
-        public DateTime? UpdationTimeLine { get; set; }
-        public DateTime? ApprovalTimeLine { get; set; }
+        public string? CreationTimeLine { get; set; }
+        public string? UpdationTimeLine { get; set; }
+        public string? ApprovalTimeLine { get; set; }
         public string? RenewalFrequency { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
         public decimal TCV { get; set; }
         public decimal Value { get; set; }
         public string? ILC { get; set; }
@@ -142,9 +140,8 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? Stage { get; set; }
         public string? FromIBS { get; set; }
         public string? SalesConnect { get; set; }
-        public DateTime? DateSubmissionSigning { get; set; }
-        public DateTime? SignDateIfSigned { get; set; }
-        public string? OpportunityID { get; set; }
+        public string? DateSubmissionSigning { get; set; }
+        public string? SignDateIfSigned { get; set; }
         public string? Remarks { get; set; }
 
     }

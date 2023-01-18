@@ -59,7 +59,6 @@ namespace SoW.Tracker.WebAPI.Models.ViewModels
         public string? SalesConnect { get; set; }
         public string? DateSubmissionSigning { get; set; }
         public string? SignDateIfSigned { get; set; }
-        public string? OpportunityID { get; set; }
         public string? Remarks { get; set; }
         public string? CreatedBy { get; set; }
         public string? CreatedOn { get; set; }
